@@ -1,9 +1,12 @@
 require_relative '../../db/config'
 
 class Teacher < ActiveRecord::Base
+
 	has_many  :subjects
 	has_many  :students, through: :subjects
+
 	validates :email, uniqueness: true, format: {with: /\w{1,}\@\w{1,}\.\w{2,}/}
+	validate :name, presence: true, uniqueness: true, length: {in: 1..20, message: "Please use a decent name"}
 
 	def name
 		name = first_name + " " + last_name
@@ -20,4 +23,5 @@ class Teacher < ActiveRecord::Base
 			puts "Failed"
 		end
 	end
+
 end

@@ -5,6 +5,7 @@ require_relative 'lib/students_importer'
 require_relative 'lib/teachers_importer'
 
 
+
 desc "create the database"
 task "db:create" do
   touch 'db/ar-students.sqlite3'
@@ -27,10 +28,6 @@ end
 desc "populate the test database with sample data"
 task "db:populate" do
   StudentsImporter.import
-end
-
-desc "populate the test database with sample data"
-task "db:populate" do
   TeachersImporter.import
 end
 
